@@ -52,17 +52,23 @@
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
 
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ name, email }),
-        headers: { "Content-Type": "application/json" },
-      });
+      try {
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify({ name, email }),
+          headers: { "Content-Type": "application/json" },
+        });
 
-      if (response.ok) {
-        alert("Form submitted successfully!");
-        document.getElementById('submitForm').reset();
-      } else {
-        alert("There was an error submitting the form.");
+        if (response.ok) {
+          alert("Form submitted successfully!");
+          window.location.href = "https://betalaunch.io"; // Redirect to the desired URL
+        } else {
+          alert("There was an error submitting the form.");
+            window.location.href = "https://betalaunch.io"; // Redirect to the desired URL
+        }
+      } catch (error) {
+        console.error("Error submitting the form:", error);
+        alert("There was a network error. Please try again.");
       }
     });
   </script>
